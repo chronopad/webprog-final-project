@@ -25,6 +25,7 @@ Route::get('/test', function () {return Inertia::render('test');}) ->name('test'
 
 Route::get('/login', function() {return Inertia::render('Auth/Login');})->name('login');
 Route::get('/register', function() {return Inertia::render('Auth/Register');})->name('register');
+Route::get('/tasks', function() {return Inertia::render('Tasks');})->name('tasks');
 Route::get('/inventory', function() {return Inertia::render('Inventory');})->name('inventory');
 ####
 
