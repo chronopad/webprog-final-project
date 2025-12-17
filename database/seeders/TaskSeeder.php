@@ -36,6 +36,13 @@ class TaskSeeder extends Seeder
         ]);
 
         Task::factory()->create([
+            'name' => "Daily Task XXX",
+            'description' => "lorem ipsum save water energy",
+            'type' => "daily",
+            'reward_yield' => 10
+        ]);
+
+        Task::factory()->create([
             'name' => "Educate Others",
             'description' => "Share water-saving tips with friends or family.",
             'type' => "weekly",
@@ -48,6 +55,21 @@ class TaskSeeder extends Seeder
             'type' => "weekly",
             'reward_yield' => 120
         ]);
+
+        Task::factory()->create([
+            'name' => "Weekly Task Example XXX",
+            'description' => "lorem ipsum water clean",
+            'type' => "weekly",
+            'reward_yield' => 110
+        ]);
+
+        Task::factory()->create([
+            'name' => "Weekly Task Example YYY",
+            'description' => "lorem ipsum dolor sit amet",
+            'type' => "weekly",
+            'reward_yield' => 150
+        ]);
+
 
         // Task::factory()->count(10)->create()
     }
