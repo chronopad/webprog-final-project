@@ -31,7 +31,7 @@ export default function Tasks() {
                 <div className="flex justify-center">
                     {/* foreground */}
                     <div className="w-[90%] max-w-[1600px] min-h-screen flex justify-center p-16 bg-[#F9FEFF] backdrop-blur-sm border border-white/20 shadow-2xl">
-                        <div className="w-full grid gap-10 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 items-start">
+                        <div className="w-full grid gap-10 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 items-start pt-10">
                             {/* daily tasks */}
                             <div className=" p-3 bg-[#C0DEE5] rounded-sm">
                                 <h1 className="text-3xl font-poppins font-semibold text-gray-800 mb-4">Daily</h1>
