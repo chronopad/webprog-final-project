@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 
 import MainLayout from '@/Layouts/MainLayout';
 import Button from '@/Components/button';
 import FormField from '@/Components/formField';
 
 export default function LoginForm() {
-    const [formData, setFormData] = useState({
+    const form = useForm({
         username: '',
         email: '',
         password: '',
@@ -15,15 +15,19 @@ export default function LoginForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert(`Username: ${formData.username}\nEmail: ${formData.email}\nPassword: ${formData.password}\nConfirm Password: ${formData.confirmPassword}`);
+
+        form.transform((data) => ({
+            name: data.username,
+            email: data.email,
+            password: data.password,
+            password_confirmation: data.confirmPassword,
+        }))
+
+        form.post('/register');
     };
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        form.setData(e.target.name, e.target.value);
     };
 
     return (
@@ -47,15 +51,15 @@ export default function LoginForm() {
                         <h1 className="text-[42px] font-bold mb-6 font-fredoka text-white text-center">Sign Up</h1>
                         
                         <form onSubmit={handleSubmit} className="w-[80%] mx-auto space-y-4">
-                            <FormField name='username' value={formData.username} onChange={handleChange} required />
+                            <FormField name='username' value={form.data.username} onChange={handleChange} error={form.errors.name} required />
 
-                            <FormField name='email' value={formData.email} onChange={handleChange} required />
+                            <FormField name='email' value={form.data.email} onChange={handleChange} error={form.errors.email} required />
 
-                            <FormField name='password' value={formData.password} onChange={handleChange} required />
+                            <FormField name='password' value={form.data.password} onChange={handleChange} error={form.errors.password} required />
 
-                            <FormField name='confirmPassword' value={formData.confirmPassword} onChange={handleChange} required />
+                            <FormField name='confirmPassword' value={form.data.confirmPassword} onChange={handleChange} error={form.errors.password_confirmation} required />
 
-                            <Button>Continue</Button>
+                            <Button type='submit' disabled={form.processing}>Continue</Button>
 
                             <div className='text-center'>
                                 <Link href='/login' className='font-poppins text-xs text-white hover:text-gray-300 underline'>

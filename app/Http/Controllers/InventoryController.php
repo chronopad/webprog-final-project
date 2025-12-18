@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Collectible;
+
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller

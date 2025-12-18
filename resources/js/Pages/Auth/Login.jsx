@@ -1,27 +1,23 @@
 import { useState } from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, useForm } from '@inertiajs/react';
 
 import MainLayout from '@/Layouts/MainLayout';
 import Button from '@/Components/button';
 import FormField from '@/Components/formField';
 
 export default function LoginForm() {
-    const [formData, setFormData] = useState({
+    const { data, setData, post, processing, errors } = useForm({
         email: '',
         password: '',
     });
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert(`Email: ${formData.email}\nPassword: ${formData.password}`);
+        post('/login');
     };
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+        setData(e.target.name, e.target.value);
     };
 
     return (
@@ -33,11 +29,11 @@ export default function LoginForm() {
                     <h1 className="text-[42px] font-bold mb-6 font-fredoka text-white text-center">Log In</h1>
                     
                     <form onSubmit={handleSubmit} className="w-[80%] mx-auto space-y-4">
-                        <FormField name='email' value={formData.email} onChange={handleChange} required />
+                        <FormField name='email' value={data.email} onChange={handleChange} error={errors.email} required />
 
-                        <FormField name='password' value={formData.password} onChange={handleChange} required />
+                        <FormField name='password' value={data.password} onChange={handleChange} error={errors.password} required />
 
-                        <Button>Continue</Button>
+                        <Button type='submit' disabled={processing}>Continue</Button>
 
                         <div className='text-center'>
                             <Link href='/register' className='font-poppins text-xs text-white hover:text-gray-300 underline'>

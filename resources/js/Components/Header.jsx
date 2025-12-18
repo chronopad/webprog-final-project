@@ -1,9 +1,11 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 
 import Button from '@/Components/button';
 
-export default function Header() {
-    const { url } = usePage();
+export default function Header() {    
+    const { url, props } = usePage();
+    const user = props.auth.user;
+
     const isActive = (path) => url === path;
 
     const NavLink = ({ href, children }) => (
@@ -21,20 +23,22 @@ export default function Header() {
 
     return (
         <header className="w-full bg-[#22B6DB] text-white px-10 flex justify-between items-stretch">
-            {/* Logo & Navigation */}
             <div className='flex items-center gap-24 py-1'>
                 <Link href="/" className="font-fredoka text-[40px] font-bold">
                     WaterQuest
                 </Link>
 
-                <nav className="h-full flex items-center gap-6">
-                    <NavLink href="/tasks">Tasks</NavLink>
-                    <NavLink href="/inventory">Inventory</NavLink>
-                </nav>
+                {user && (
+                    <nav className="h-full flex items-center gap-6">
+                        <NavLink href="/tasks">Tasks</NavLink>
+                        <NavLink href="/inventory">Inventory</NavLink>
+                    </nav>
+                )}
             </div>
 
-            {/* Navigation */}
-            <Button variant="secondary" size="not-full" className="font-medium px-4 self-center">Log Out</Button>
+            {user && (
+                <Button variant="secondary" size="not-full" className="font-medium px-4 self-center" onClick={() => router.post('/logout')}>Log Out</Button>
+            )}
         </header>
     );
 }
