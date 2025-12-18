@@ -9,4 +9,7 @@ Setiap kali kalian mau lanjut kerja, sebelum mulai selalu jalanin `git pull orig
     > <img width="941" height="46" alt="image" src="https://github.com/user-attachments/assets/fe7db1ea-258d-4e9d-b2f3-a74ed6e37a41" />
     > **NOTE2:** Mungkin pas jalanin `npm install` muncul _2 **moderate** severity vulnerabilities_. Aku gk tau kenapa begitu tp harusnya aman
 4. Buat jalanin projectnya: `npm run dev` & `php artisan serve`
-5. Jangan pakai ChatGPT atau kamu aku rodok
+
+## ERD
+<img width="922" height="628" alt="image" src="https://github.com/user-attachments/assets/ec02ab79-9e6d-4766-9ded-a27779e3e99e" />
+
