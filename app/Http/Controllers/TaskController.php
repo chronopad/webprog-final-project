@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class TaskController extends Controller
 {
-    public function data() {
+    public function data(Request $request) {
         $user = $request->user();
 
         // Pick 3 daily + 3 weekly challenges
@@ -92,6 +92,30 @@ class TaskController extends Controller
     public function complete(Request $request, Task $task) {
         $user = $request->user();
         // $checked = (bool) $request->boolean('checked'); // Frontend sends true/false
+
+        // Recompute the active task IDs for this user
+        $today = now()->toDateString();
+        $dailyKey = "user:{$user->id}:daily:{$today}";
+        $dailyIds = Cache::remember($dailyKey, now()->endOfDay(), function () {
+            return Task::where('type', 'daily')->inRandomOrder()->limit(3)->pluck('id')->toArray();
+        });
+
+        $week = now()->isoWeek();
+        $year = now()->year;
+        $weeklyKey = "user:{$user->id}:weekly:{$year}-W{$week}";
+        $weeklyIds = Cache::remember($weeklyKey, now()->endOfWeek(), function () {
+            return Task::where('type', 'weekly')->inRandomOrder()->limit(3)->pluck('id')->toArray();
+        });
+
+        $activeIds = array_values(array_unique(array_merge($dailyIds, $weeklyIds)));
+
+        // Block completing tasks that are not active
+        if (!in_array($task->id, $activeIds, true)) {
+            return response()->json([
+                'ok' => false,
+                'error' => 'TASK_NOT_ACTIVE',
+            ], 403);
+        }
 
         return DB::transaction(function () use ($user, $task, $checked) {
 
