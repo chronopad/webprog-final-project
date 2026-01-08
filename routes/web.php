@@ -20,6 +20,10 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/tasks', function() {return Inertia::render('Tasks');})->name('tasks');
     Route::get('/inventory', function() {return Inertia::render('Inventory');})->name('inventory');
+    Route::get('/tasks/data', [TaskController::class, 'data'])->name('tasks.data');
+    Route::post('/tasks/{task}/complete', [TaskController::class, 'complete'])->name('tasks.complete');
+    Route::get('/inventory/data', [InventoryController::class, 'data'])->name('inventory.data');
+    Route::get('/inventory/unlock', [InventoryController::class, 'unlock'])->name('inventory.unlock');
 });
 
 Route::get('/login', function() {return Inertia::render('Auth/Login');})->name('login');
@@ -27,9 +31,5 @@ Route::get('/register', function() {return Inertia::render('Auth/Register');})->
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
-
-Route::get('/tasks/data', [TaskController::class, 'index'])->name('tasks.data');
-Route::post('/tasks/{task}/toggle', [TaskController::class, 'toggle'])->name('tasks.toggle');
-Route::get('/inventory/data', [InventoryController::class, 'index'])->name('inventory.data');
 
 require __DIR__.'/settings.php';
