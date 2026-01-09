@@ -52,8 +52,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
-
+    'url' => env('APP_URL', 'http://water-quest.vercel.app'),
+    
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
