@@ -1,0 +1,107 @@
+{
+  "_MainLayout-B53HLPUF.js": {
+    "file": "assets/MainLayout-B53HLPUF.js",
+    "name": "MainLayout",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "_formField-CDEQnnxK.js": {
+    "file": "assets/formField-CDEQnnxK.js",
+    "name": "formField",
+    "imports": [
+      "resources/js/app.jsx"
+    ]
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-Bgk4IXbR.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/Pages/Auth/Login.jsx": {
+    "file": "assets/Login-Dp57O2xH.js",
+    "name": "Login",
+    "src": "resources/js/Pages/Auth/Login.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-B53HLPUF.js",
+      "_formField-CDEQnnxK.js"
+    ],
+    "css": [
+      "assets/app-Bgk4IXbR.css"
+    ]
+  },
+  "resources/js/Pages/Auth/Register.jsx": {
+    "file": "assets/Register-DpX3JGdd.js",
+    "name": "Register",
+    "src": "resources/js/Pages/Auth/Register.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-B53HLPUF.js",
+      "_formField-CDEQnnxK.js"
+    ],
+    "css": [
+      "assets/app-Bgk4IXbR.css"
+    ]
+  },
+  "resources/js/Pages/Inventory.jsx": {
+    "file": "assets/Inventory-CxRUoFsL.js",
+    "name": "Inventory",
+    "src": "resources/js/Pages/Inventory.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-B53HLPUF.js"
+    ],
+    "css": [
+      "assets/app-Bgk4IXbR.css"
+    ]
+  },
+  "resources/js/Pages/Tasks.jsx": {
+    "file": "assets/Tasks-DFMf-KfR.js",
+    "name": "Tasks",
+    "src": "resources/js/Pages/Tasks.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-B53HLPUF.js"
+    ],
+    "css": [
+      "assets/app-Bgk4IXbR.css"
+    ]
+  },
+  "resources/js/Pages/Welcome.jsx": {
+    "file": "assets/Welcome-COaBjBf7.js",
+    "name": "Welcome",
+    "src": "resources/js/Pages/Welcome.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.jsx",
+      "_MainLayout-B53HLPUF.js"
+    ],
+    "css": [
+      "assets/app-Bgk4IXbR.css"
+    ]
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-38vMeFEA.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/Auth/Login.jsx",
+      "resources/js/Pages/Auth/Register.jsx",
+      "resources/js/Pages/Inventory.jsx",
+      "resources/js/Pages/Tasks.jsx",
+      "resources/js/Pages/Welcome.jsx"
+    ],
+    "css": [
+      "assets/app-Bgk4IXbR.css"
+    ]
+  }
+}
