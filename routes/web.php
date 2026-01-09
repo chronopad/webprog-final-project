@@ -1,20 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\InventoryController;
 
-// Route::get('/', function () {
-//     return Inertia::render('welcome', [
-//         'canRegister' => Features::enabled(Features::registration()),
-//     ]);
-// })->name('home');
-
 Route::get('/', function () {
-    return "Hello";
+    return Auth::check() ? redirect()->route('tasks') : redirect()->route('register');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -23,7 +18,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tasks/data', [TaskController::class, 'data'])->name('tasks.data');
     Route::post('/tasks/{task}/complete', [TaskController::class, 'complete'])->name('tasks.complete');
     Route::get('/inventory/data', [InventoryController::class, 'data'])->name('inventory.data');
-    // Route::get('/inventory/unlock', [InventoryController::class, 'unlock'])->name('inventory.unlock');
     Route::match(['get', 'post'], '/inventory/unlock', [InventoryController::class, 'unlock'])->name('inventory.unlock');
 });
 
