@@ -117,7 +117,7 @@ class TaskController extends Controller
             ], 403);
         }
 
-        return DB::transaction(function () use ($user, $task, $checked) {
+        return DB::transaction(function () use ($user, $task) {
 
             $userTask = UserTask::firstOrCreate(
                 ['user_id' => $user->id, 'task_id' => $task->id],

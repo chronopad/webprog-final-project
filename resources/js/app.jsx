@@ -2,6 +2,7 @@ import '../css/app.css'
 import { createInertiaApp } from '@inertiajs/react'
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
 import { createRoot } from 'react-dom/client'
+import { CurrencyProvider } from '@/Components/CurrencyContext'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
 
@@ -13,9 +14,15 @@ createInertiaApp({
       import.meta.glob('./Pages/**/*.{jsx,tsx}'),
     ),
   setup({ el, App, props }) {
-    createRoot(el).render(<App {...props} />)
+    createRoot(el).render(
+      <App {...props}>
+        {({ Component, props: pageProps, key }) => (
+          <CurrencyProvider>
+            <Component {...pageProps} key={key} />
+          </CurrencyProvider>
+        )}
+      </App>
+    )
   },
-  progress: {
-    color: '#4B5563',
-  },
+  progress: { color: '#4B5563' },
 })

@@ -1,10 +1,13 @@
 import { Link, router, usePage } from '@inertiajs/react';
-
 import Button from '@/Components/button';
+import { useCurrency } from '@/Components/CurrencyContext';
 
 export default function Header() {    
     const { url, props } = usePage();
     const user = props.auth.user;
+
+    const { currency } = useCurrency();
+    const coins = user ? currency : 0;
 
     const isActive = (path) => url === path;
 
@@ -37,7 +40,13 @@ export default function Header() {
             </div>
 
             {user && (
-                <Button variant="secondary" size="not-full" className="font-medium px-4 self-center" onClick={() => router.post('/logout')}>Log Out</Button>
+                <div className="flex items-center gap-8">
+                    <div className="self-center font-poppins text-lg font-bold">
+                        <img src="/Assets/coin.png" alt="Coins" className="inline-block w-6 h-6 mr-2" />
+                        {coins}
+                    </div>
+                    <Button variant="secondary" size="not-full" className="font-medium px-4 self-center" onClick={() => router.post('/logout')}>Log Out</Button>
+                </div>
             )}
         </header>
     );

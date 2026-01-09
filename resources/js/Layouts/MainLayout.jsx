@@ -1,5 +1,6 @@
 import Header from '@/Components/Header';
 import Footer from '@/Components/Footer';
+import { CurrencyProvider } from '@/Components/CurrencyContext';
 
 export default function MainLayout({ children }) {
     return (

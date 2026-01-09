@@ -23,7 +23,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tasks/data', [TaskController::class, 'data'])->name('tasks.data');
     Route::post('/tasks/{task}/complete', [TaskController::class, 'complete'])->name('tasks.complete');
     Route::get('/inventory/data', [InventoryController::class, 'data'])->name('inventory.data');
-    Route::get('/inventory/unlock', [InventoryController::class, 'unlock'])->name('inventory.unlock');
+    // Route::get('/inventory/unlock', [InventoryController::class, 'unlock'])->name('inventory.unlock');
+    Route::match(['get', 'post'], '/inventory/unlock', [InventoryController::class, 'unlock'])->name('inventory.unlock');
 });
 
 Route::get('/login', function() {return Inertia::render('Auth/Login');})->name('login');

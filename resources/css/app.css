@@ -14,3 +14,25 @@
     --font-poppins: 'Poppins', sans-serif;
     --font-fredoka: 'Fredoka', sans-serif;
 }
+
+@keyframes lootbox-shake {
+    0% { transform: translateX(0) rotate(0deg); }
+    20% { transform: translateX(-6px) rotate(-2deg); }
+    40% { transform: translateX(6px) rotate(2deg); }
+    60% { transform: translateX(-4px) rotate(-1deg); }
+    80% { transform: translateX(4px) rotate(1deg); }
+    100% { transform: translateX(0) rotate(0deg); }
+}
+
+.lootbox-shake {
+    animation: lootbox-shake 120ms ease-in-out 0ms 10;
+}
+
+@keyframes lootbox-pop {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.lootbox-pop {
+    animation: lootbox-pop 200ms ease-out;
+}
